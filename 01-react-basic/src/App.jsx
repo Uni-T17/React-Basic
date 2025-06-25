@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
 import TapButton from "./components/TapButton";
 
@@ -8,6 +8,11 @@ function App() {
     age: 12,
     isSingle: false,
   });
+  const [error, setError] = useState("");
+  useEffect(() => {
+    user.name ? setError("") : setError("Error User need Name!");
+  }, [user.name]);
+
   return (
     <>
       <div>
@@ -16,7 +21,7 @@ function App() {
         {user.isSingle ? <p>I am a Single.</p> : <p>I am in a relationship.</p>}
 
         <form>
-          <label htmlFor="myName"></label>
+          <label htmlFor="myName">Enter Your Name </label>
           <input
             type="text"
             id="myName"
@@ -26,6 +31,7 @@ function App() {
             }
           />
         </form>
+        {error && <p style={{ color: "red" }}>{error}</p>}
 
         <TapButton
           buttonName={"Click"}
