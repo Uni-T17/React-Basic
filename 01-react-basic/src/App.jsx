@@ -3,17 +3,18 @@ import "./App.css";
 import TapButton from "./components/TapButton";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [fruits, setFruit] = useState(["Apple", "Orange"]);
   return (
     <>
       <div>
-        <p>Count: {count}</p>
+        <ul>
+          {fruits.map((fruit) => (
+            <li>{fruit}</li>
+          ))}
+        </ul>
         <TapButton
-          onClick={() => {
-            setCount(count + 1);
-            setCount((prev) => prev + 1);
-          }}
-          buttonName="Increase"
+          buttonName={"Add Fruit"}
+          onClick={() => setFruit((prev) => [...prev, "Apple"])}
         />
       </div>
     </>
