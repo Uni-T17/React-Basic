@@ -10,7 +10,13 @@ function App() {
   });
   const [error, setError] = useState("");
   useEffect(() => {
-    user.name ? setError("") : setError("Error User need Name!");
+    if (!user.name) {
+      setError("Username can't be empty!");
+    } else if (user.name.trim() === "") {
+      setError("Invalid Input!");
+    } else {
+      setError("");
+    }
   }, [user.name]);
 
   return (
